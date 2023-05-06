@@ -28,7 +28,7 @@ export const SimpleSelectForm = ({name, label, optionSelect, requiredMark = true
                 showSearch
                 allowClear
                 size="large"
-                // data-cy="modal-add-priority-dropdown"
+                data-cy="modal-add-priority-item"
                 placeholder={`Select ${label}`}
                 style={{
                     width: "50%"
@@ -37,7 +37,7 @@ export const SimpleSelectForm = ({name, label, optionSelect, requiredMark = true
                 {
                     optionSelect.map((data, index) => 
                         <Select.Option key={index} value={data.value} >
-                            <div data-cy="modal-add-priority-item" style={{ display: "flex", gap: "12px" }}>
+                            <div style={{ display: "flex", gap: "12px" }}>
                                 <PriorityBadge 
                                     priority={data.value}
                                 />
