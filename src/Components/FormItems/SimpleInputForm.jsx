@@ -25,7 +25,7 @@ export const SimpleInputForm = ({name, label, placeholder, hasFeedback = false, 
             ]}
         >
             <Input
-                data-cy="modal-add-name-input"
+                // data-cy="modal-add-name-input"
                 size="large"
                 autoComplete="off"
                 placeholder={placeholder === undefined ? `Input ${label}` : placeholder}

@@ -28,7 +28,7 @@ export const SimpleSelectForm = ({name, label, optionSelect, requiredMark = true
                 showSearch
                 allowClear
                 size="large"
-                data-cy="modal-add-priority-dropdown"
+                // data-cy="modal-add-priority-dropdown"
                 placeholder={`Select ${label}`}
                 style={{
                     width: "50%"
