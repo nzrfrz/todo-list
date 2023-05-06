@@ -1,0 +1,19 @@
+{
+    "title": "Annual Fuel Cost of Vehicles",
+    "xAxisTitle": "Anual Fuel Cost",
+    "yAxisTitle": "",
+    "seriesData": [
+        {
+            "name": "Basic Bar",
+            "data": [
+                { "x": "Minicompact Cars", "y": [1450, 3550] },
+                { "x": "Subcompact Cars", "y": [550, 3370] },
+                { "x": "Compact Cars", "y": [800, 2750] },
+                { "x": "Midsize Cars", "y": [500, 3250] },
+                { "x": "Large Cars", "y": [650, 3300] },
+                { "x": "Small Station Wagons", "y": [550, 2100] },
+                { "x": "Midsize Station Wagons", "y": [1600, 2550] }
+            ]
+        }
+    ]
+}

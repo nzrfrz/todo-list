@@ -1,0 +1,63 @@
+.hamburger-icon {
+    position: var(--position);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    left: var(--left);
+    /* margin-left: 5px; */
+    cursor: pointer;
+    border-radius: 50%;
+    background: var(--bgc);
+    /* background: red; */
+    transition: all 0.2s ease-in-out;
+}
+
+.hamburger-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.1);
+}
+
+.icon-1, .icon-2, .icon-3 {
+    position: relative;
+    width: 22px;
+    height: 3px;
+    border-radius: 16px;
+    background-color: var(--bgc);
+    transition: all 0.3s cubic-bezier(.84,.06,.52,1.8);
+}
+
+.icon-1 {
+    transform: translateY(-5px);
+}
+  
+.icon-3 {
+    transform: translateY(5px);
+}
+
+.icon-1.a {
+    position: absolute;
+    transform: translateY(0px) rotate(45deg);
+}
+
+.icon-3.b {
+    position: absolute;
+    transform: translateY(0px) rotate(-45deg);
+}
+
+.icon-2.c {
+    opacity: 0;
+}
+
+.clear {
+    clear: both;
+}
+
+@media (width < 768) {
+    .sidebar-header-container .hamburger-icon {
+        position: absolute;
+        left: 10%;
+    }
+}

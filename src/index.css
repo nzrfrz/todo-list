@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;500;700&display=swap');
+
+@import url(./_css/loginPage.css);
+
+@import url(./_css/homeLayout.css);
+@import url(./_css/contentLayout.css);
+
+@import url(./_css/menuBurger.css);
+@import url(./_css/navbarProfileDD.css);
+
+:root {
+  --contentContainerLightMode: transparent;
+  --contentContainerDarkMode: #151E31;
+  /* --contentContainerDarkMode: rgba(51, 65, 85, 0.45); */
+}
+
+/*
+-option 2
+  --contentContainerDarkMode: #26334D;
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Comfortaa',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.5); 
+  border-radius: 10px;
+}
+
+.layout-header-menu div:nth-child(1) {
+  flex-grow: 1;
+  /* padding-left: 220px; */
+}
+
+.layout-header-menu .logo span {
+  color: white;
+  font-size: 18px;
+  padding-top: 12px ;
+  padding-left: 12px;
+}
+
+.navbar-item-container {
+  display: flex;
+}
+
+.page-content-custom {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  padding: var(--contentPadding);
+  background-color: var(--contentBGC);
+  border-radius: var(--contentBorderRadius);
+  gap: 24px;
+}
+
+span[data-cy="activity-title"] {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+span[data-cy="todo-title"] {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.empty-activity-container img {
+  height: var(--imgHeight);
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div[data-cy="activity-items-container"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+div[data-cy="activity-items-container"] > div {
+  flex: 0 1 auto;
+}
+
+.title-container > span {
+  flex-grow: 0;
+}
+
+input[data-cy="todo-title-input"]:focus {
+  border: transparent;
+}
+
+/* ----------------------------------------------------------- */
+
+div[data-cy="todo-list-container"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.todo-item-content-container {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.todo-item-content {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ----------------------------------------------------------- */
+
+.bc-item svg {
+  margin-right: 6px;
+  align-items: center;
+}
+
+.ant-picker-panels {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/*#region ---------- auth layout ---------- */
+.auth-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  height: 100dvh;
+  background: #121518;
+}
+/*#endregion ---------- auth layout ---------- */
+
+/*#region ---------- button logout ---------- */
+.button-logout-container button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.button-logout-container button img {
+  width: 25px;
+  transition: all .3s;
+}
+
+.button-logout-container button:hover {
+  background-color: var(--bgc);
+}
+
+.button-logout-container button:hover img {
+  transform: rotate(90deg);
+  transition: all 0.3s;
+}
+
+.button-logout-container button:active img {
+  transform: translateX(15px) rotate(90deg);
+  transition: all 0.3s;
+}
+/*#endregion ---------- button logout ---------- */
+
+/*#region ---------- button toggle theme ---------- */
+.toggle-theme-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.light-mode {
+  --size: 1.5rem;
+  
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  
+  width: var(--size);
+  height: var(--size);
+  border-radius: 999px;
+  --ray-size: calc(var(--size) * -0.4);
+  --offset-orthogonal: calc(var(--size) * 0.65);
+  --offset-diagonal: calc(var(--size) * 0.45);
+
+  transform: scale(0.75);
+  color: hsl(40, 100%, 50%);
+  box-shadow: 
+    inset 0 0 0 var(--size),
+    calc(var(--offset-orthogonal) * -1) 0 0 var(--ray-size),
+    var(--offset-orthogonal) 0 0 var(--ray-size),
+    0 calc(var(--offset-orthogonal) * -1) 0 var(--ray-size),
+    0 var(--offset-orthogonal) 0 var(--ray-size),
+    calc(var(--offset-diagonal) * -1) calc(var(--offset-diagonal) * -1) 0 var(--ray-size),
+    var(--offset-diagonal) var(--offset-diagonal) 0 var(--ray-size),
+    calc(var(--offset-diagonal) * -1) var(--offset-diagonal) 0 var(--ray-size),
+    var(--offset-diagonal) calc(var(--offset-diagonal) * -1) 0 var(--ray-size);
+  transition: all 500ms;
+}
+
+.dark-mode {
+  --size: 1.5rem;
+  
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  
+  width: var(--size);
+  height: var(--size);
+  box-shadow: inset calc(var(--size) * 0.33) calc(var(--size) * -0.25) 0;
+  border-radius: 999px;
+  color: hsl(240, 100%, 95%);
+  
+  transition: all 500ms;
+}
+/*#endregion ---------- button toggle theme ---------- */
+
+/*#region ---------- button success ---------- */
+.button-success {
+  box-shadow: 2px 2px 3px 0px rgba(0, 126, 51, 0.75);
+  transition: all 0.2s;
+}
+
+.button-success:active {
+  transform: scale(0.95);
+  box-shadow: 0px 0px 0px 0px rgba(0, 126, 51, 0.75);
+  transition: all 0.2s;
+}
+/*#endregion ---------- button success ---------- */
+
+/*#region ---------- button error ---------- */
+.button-error {
+  box-shadow: 2px 2px 3px 0px rgba(204, 0, 0, 0.75);
+  transition: all 0.2s;
+}
+
+.button-error:active {
+  transform: scale(0.95);
+  box-shadow: 0px 0px 0px 0px rgba(204, 0, 0, 0.75);
+  transition: all 0.2s;
+}
+/*#endregion ---------- button error ---------- */
+
+/*#region ---------- button warning ---------- */
+.button-warning {
+  box-shadow: 2px 2px 3px 0px rgba(255, 136, 0, 0.75);
+  transition: all 0.2s;
+}
+
+.button-warning:active {
+  transform: scale(0.95);
+  box-shadow: 0px 0px 0px 0px rgba(255, 136, 0, 0.75);
+  transition: all 0.2s;
+}
+/*#endregion ---------- button warning ---------- */
+
+/*#region ---------- button info ---------- */
+.button-info {
+  box-shadow: 2px 2px 3px 0px rgba(0, 153, 204, 0.75);
+  transition: all 0.2s;
+}
+
+.button-info:active {
+  transform: scale(0.95);
+  box-shadow: 0px 0px 0px 0px rgba(0, 153, 204, 0.75);
+  transition: all 0.2s;
+}
+/*#endregion ---------- button info ---------- */
+
+div.ant-notification.ant-notification-bottomRight.css-dev-only-do-not-override-13lyjy8 > div > div > div > div.ant-notification-notice-message {
+  color: black
+}
+
+div.ant-notification.ant-notification-bottomRight.css-dev-only-do-not-override-13lyjy8 > div > a > span {
+  color: black;
+}
+

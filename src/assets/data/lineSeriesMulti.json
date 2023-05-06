@@ -1,0 +1,14 @@
+{
+    "chartTitle": "Number Of New Customer",
+    "xAxisCategories": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"],
+    "data": [
+        {
+            "name": "2016",
+            "data": [155, 150, 152, 148, 142, 150, 146, 149, 153, 158, 154, 150]
+        },
+        {
+            "name": "2017",
+            "data": [172, 173, 175, 172, 162, 165, 172, 168, 175, 170, 165, 169]
+        }
+    ]
+}

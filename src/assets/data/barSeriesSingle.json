@@ -1,0 +1,22 @@
+{
+    "title": "Basic Bar Chart",
+    "xAxisTitle": "Basic Bar X Axis Title",
+    "yAxisTitle": "Basic Bar Y Axis Title",
+    "seriesData": [
+        {
+            "name": "Basic Bar",
+            "data": [
+                {"x": "South Korea", "y": 400}, 
+                {"x": "Canada", "y": 430}, 
+                {"x": "United Kingdom", "y": 448}, 
+                {"x": "Netherlands", "y": 470}, 
+                {"x": "Italy", "y": 540},
+                {"x": "France", "y": 580}, 
+                {"x": "Japan", "y": 690},
+                {"x": "United States", "y,": 1100}, 
+                {"x": "China", "y": 1200},
+                {"x": "Germany", "y": 1380}
+            ]
+        }
+    ]
+}
