@@ -253,7 +253,7 @@ export const ActivityDetail = () => {
                                 <Card
                                     key={index}
                                     hoverable
-                                    data-cy={`todo-item-${index}`}
+                                    data-cy="todo-item"
                                     style={{ width: "100%", backgroundColor: isDarkMode ? undefined : "white" }}
                                 >
                                     <div className="todo-item-content-container">

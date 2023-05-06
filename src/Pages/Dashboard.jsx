@@ -115,7 +115,7 @@ export const Dashboard = () => {
                                 <Card
                                     key={index}
                                     hoverable
-                                    data-cy={`activity-item-${index}`}
+                                    data-cy="activity-item"
                                     style={{ width: cardWidth, backgroundColor: isDarkMode ? undefined : "white" }}
                                     bodyStyle={{
                                         display: "flex",
