@@ -283,7 +283,8 @@ export const ActivityDetail = () => {
                                         </div>
                                         <Button 
                                             data-cy="todo-item-delete-button"
-                                            type="link" 
+                                            type="default" 
+                                            shape="circle"
                                             icon={<DeleteOutlined style={{ color: "#888888" }} />} 
                                             onClick={() => {
                                                 setIsModalDeleteOpen(true);

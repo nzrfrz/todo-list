@@ -7,6 +7,7 @@ import {
 export const ButtonModalOK = ({loading, shape, style, text, htmlType, icon, disabled, onClick}) => {
     return (
         <ConfigProvider
+            data-cy="modal-delete-confirm-button"
             theme={{
                 token: {
                     colorPrimary: '#ED4C5C',
@@ -16,7 +17,6 @@ export const ButtonModalOK = ({loading, shape, style, text, htmlType, icon, disa
             }}
         >
             <Button
-                data-cy="modal-delete-confirm-button"
                 size="large"
                 loading={loading}
                 className="button-error"
