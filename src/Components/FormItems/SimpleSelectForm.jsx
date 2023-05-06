@@ -14,7 +14,6 @@ export const SimpleSelectForm = ({name, label, optionSelect, requiredMark = true
     return (
         <Form.Item
             name={name}
-            data-cy="modal-add-priority-dropdown"
             label={<Text data-cy="modal-add-priority-title">{label}</Text>}
             required={requiredMark}
             rules={[
@@ -26,7 +25,7 @@ export const SimpleSelectForm = ({name, label, optionSelect, requiredMark = true
         >
             <Select
                 size="large"
-                data-cy="modal-add-priority-item"
+                data-cy="modal-add-priority-dropdown"
                 placeholder={`Select ${label}`}
                 style={{
                     width: "50%"
@@ -34,12 +33,12 @@ export const SimpleSelectForm = ({name, label, optionSelect, requiredMark = true
             >
                 {
                     optionSelect.map((data, index) => 
-                        <Select.Option data-cy="modal-add-priority-item" key={index} value={data.value} >
+                        <Select.Option data-cy={`modal-add-priority-${data.value}`} key={index} value={data.value} >
                             <div style={{ display: "flex", gap: "12px" }}>
                                 <PriorityBadge 
                                     priority={data.value}
                                 />
-                                <div data-cy={`modal-add-priority-${data.value}`} style={{ display: "flex", flexGrow: 1 }} >
+                                <div style={{ display: "flex", flexGrow: 1 }} >
                                     {data.label}
                                 </div>
                             </div>
