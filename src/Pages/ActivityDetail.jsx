@@ -257,7 +257,7 @@ export const ActivityDetail = () => {
                                     style={{ width: "100%", backgroundColor: isDarkMode ? undefined : "white" }}
                                 >
                                     <div className="todo-item-content-container">
-                                        <div data-cy="todo-item-checkbox" className="checkbox-wrapper">
+                                        <div className="checkbox-wrapper">
                                             <Checkbox 
                                                 data-cy="todo-item-checkbox"
                                                 checked={data.is_active === 0 ? true : false}
