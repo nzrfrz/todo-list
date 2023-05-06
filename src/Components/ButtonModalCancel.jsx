@@ -16,7 +16,7 @@ export const ButtonModalCancel = ({loading, shape, style, text, htmlType, icon, 
             }}
         >
             <Button
-                data-cy="modal-delete-confirm-button"
+                data-cy="modal-delete-cancel-button"
                 size="large"
                 loading={loading}
                 className="button-modal-cancel"

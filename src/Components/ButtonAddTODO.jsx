@@ -11,6 +11,7 @@ export const ButtonAddTODO = ({loading, size, shape, style, text, disabled, html
 
     return (
         <ConfigProvider
+            data-cy="todo-add-button"
             theme={{
                 token: {
                     colorPrimary: '#16ABF8',

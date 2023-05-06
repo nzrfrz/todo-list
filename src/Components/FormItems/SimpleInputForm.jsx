@@ -10,6 +10,7 @@ const { Text } = Typography;
 export const SimpleInputForm = ({name, label, placeholder, hasFeedback = false, validateStatus, help, requiredMark = true}) => {
     return (
         <Form.Item
+            data-cy="modal-add-name-input"
             hasFeedback={hasFeedback}
             name={name}
             label={<Text data-cy="modal-add-name-title">{label}</Text>}

@@ -7,6 +7,7 @@ import {
 export const ButtonModalSave = ({loading, shape, style, text, htmlType, icon, disabled, onClick}) => {
     return (
         <ConfigProvider
+            data-cy="modal-add-save-button"
             theme={{
                 token: {
                     colorPrimary: '#16ABF8',

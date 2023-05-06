@@ -14,6 +14,7 @@ export const SimpleSelectForm = ({name, label, optionSelect, requiredMark = true
     return (
         <Form.Item
             name={name}
+            data-cy="modal-add-priority-dropdown"
             label={<Text data-cy="modal-add-priority-title">{label}</Text>}
             required={requiredMark}
             rules={[

@@ -88,13 +88,13 @@ span[data-cy="todo-title"] {
   justify-content: space-between;
 }
 
-div[data-cy="activity-items-container"] {
+.activity-items-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 }
 
-div[data-cy="activity-items-container"] > div {
+.activity-items-container > div {
   flex: 0 1 auto;
 }
 
@@ -128,6 +128,50 @@ div[data-cy="todo-list-container"] {
 }
 
 /* ----------------------------------------------------------- */
+
+/* button filter */
+.header-menu-dd-multi-inbox-container {
+  display: flex;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.header-menu-dd-multi-inbox-container:hover {
+  background: var(--bgColor);
+  background-color: var(--bgColor);
+  transition: all 0.2s;
+}
+
+.header-menu-dd-multi-inbox {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  padding: 12px;
+  gap: 24px;
+}
+
+.multi-inbox {
+  display: flex;
+  gap: 15px;
+  padding: 6px 12px 6px 12px;
+}
+
+.multi-inbox:hover {
+  cursor: pointer;
+  background-color: var(--bgc);
+}
+
+.multi-inbox span:nth-child(1) {
+  display: flex;
+  /* flex-grow: 1; */
+  background-color: red;
+}
+/* button filter */
 
 .bc-item svg {
   margin-right: 6px;

@@ -58,10 +58,10 @@ export const Dashboard = () => {
     }, [windowDimension.width]);
 
     return (
-        <div data-cy="dashboard" className="one-column-layout-container" >
-            <div data-cy="page-content-custom" className="page-content-custom">
+        <div className="one-column-layout-container" >
+            <div className="page-content-custom">
                 
-                <div data-cy="content-title-container" className="content-title-container">
+                <div className="content-title-container">
                     <Text data-cy="activity-title" className="activity-title" >Activity</Text>
                     <ButtonAddActivity 
                         text="Tambah"
@@ -108,14 +108,14 @@ export const Dashboard = () => {
                         </div> 
                         :
                         <div
-                            data-cy="activity-items-container"
+                            className="activity-items-container"
                         >
                             {
                                 cachedData?.data?.data.map((data, index) => 
                                 <Card
                                     key={index}
                                     hoverable
-                                    data-cy="activity-item"
+                                    data-cy={`activity-item-${index}`}
                                     style={{ width: cardWidth, backgroundColor: isDarkMode ? undefined : "white" }}
                                     bodyStyle={{
                                         display: "flex",

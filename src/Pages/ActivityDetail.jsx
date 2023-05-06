@@ -19,6 +19,7 @@ import {
 import { ButtonAddTODO, LoaderRC, ModalDelete } from "../Components";
 import { ModalForm } from "./ModalForm";
 import { PriorityBadge } from "./PriorityBadge";
+import { DropdownFilter } from "./DropDownFilter";
 
 import emptyTodoImg from "../assets/images/todo-empty-state.png";
 
@@ -189,15 +190,24 @@ export const ActivityDetail = () => {
                             }}
                         />
                     </div>
-                    <ButtonAddTODO 
-                        text="Tambah"
-                        size="large"
-                        shape="round"
-                        icon={<PlusOutlined />}
-                        onClick={() => {
-                            setIsModalFormOpen(true);
+                    <div 
+                        style={{
+                            display: "flex",
+                            justifyContent: "flex-end",
+                            gap: "18px",
                         }}
-                    />
+                    >
+                        <DropdownFilter />
+                        <ButtonAddTODO 
+                            text="Tambah"
+                            size="large"
+                            shape="round"
+                            icon={<PlusOutlined />}
+                            onClick={() => {
+                                setIsModalFormOpen(true);
+                            }}
+                        />
+                    </div>
                 </div>
 
                 {
@@ -224,12 +234,19 @@ export const ActivityDetail = () => {
                                 height: `${windowDimension.height - 230}px`,
                                 "--imgHeight": `${windowDimension.height - 250}px`
                             }}
+                            onClick={() => {
+                                setIsModalFormOpen(true);
+                            }}
                         >
                             <img src={emptyTodoImg} />
                         </div> 
                         :
                         <div
-                            data-cy="todo-list-container"
+                            style={{
+                                display: "flex",
+                                flexWrap: "wrap",
+                                gap: "20px",
+                            }}
                         >
                             {
                                 todoListCached?.data?.data.map((data, index) => 
@@ -240,7 +257,7 @@ export const ActivityDetail = () => {
                                     style={{ width: "100%", backgroundColor: isDarkMode ? undefined : "white" }}
                                 >
                                     <div className="todo-item-content-container">
-                                        <div className="checkbox-wrapper">
+                                        <div data-cy="todo-item-checkbox" className="checkbox-wrapper">
                                             <Checkbox 
                                                 data-cy="todo-item-checkbox"
                                                 checked={data.is_active === 0 ? true : false}

@@ -87,9 +87,9 @@ export const useNotification = () => {
     };
 
     const destroyNotif = () => {
-        setTimeout(() => {
-            api.destroy();
-        }, 2000);
+        // setTimeout(() => {
+        //     api.destroy();
+        // }, 2000);
     };
 
     return {
