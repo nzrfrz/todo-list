@@ -36,8 +36,8 @@ export const SimpleSelectForm = ({name, label, optionSelect, requiredMark = true
             >
                 {
                     optionSelect.map((data, index) => 
-                        <Select.Option data-cy="modal-add-priority-item" key={index} value={data.value} >
-                            <div style={{ display: "flex", gap: "12px" }}>
+                        <Select.Option key={index} value={data.value} >
+                            <div data-cy="modal-add-priority-item" style={{ display: "flex", gap: "12px" }}>
                                 <PriorityBadge 
                                     priority={data.value}
                                 />
