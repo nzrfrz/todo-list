@@ -226,7 +226,7 @@ export const ActivityDetail = () => {
                     {
                         todoListCached?.data?.data.length === 0 ?
                         <div 
-                            data-cy="empty-activity-state" 
+                            data-cy="todo-empty-state" 
                             className="empty-activity-container" 
                             style={{
                                 display: "flex",

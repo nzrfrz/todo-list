@@ -76,6 +76,7 @@ export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFo
 
     return (
         <Modal 
+            data-cy="modal-add"
             title={<Text data-cy="modal-add-title" style={{ fontSize: "18px" }}>Tambah List Item</Text>} 
             okText={"Save"}
             open={isModalFormOpen} 
