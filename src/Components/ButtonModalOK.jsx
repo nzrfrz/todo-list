@@ -17,6 +17,7 @@ export const ButtonModalOK = ({loading, shape, style, text, htmlType, icon, disa
             }}
         >
             <Button
+                data-cy="modal-delete-confirm-button"
                 size="large"
                 loading={loading}
                 className="button-error"

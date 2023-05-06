@@ -127,6 +127,7 @@ export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFo
                         label="Nama List Item"
                     />
                     <SimpleSelectForm 
+                        data-cy="modal-add-priority-item"
                         name="priority"
                         label="Priority"
                         optionSelect={priorityData}
