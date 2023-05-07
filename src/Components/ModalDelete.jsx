@@ -40,7 +40,7 @@ export const ModalDelete = ({modalType, selectedData, isModalDeleteOpen, setIsMo
             footer={null}
             open={isModalDeleteOpen}
             afterClose={() => {
-                setTodoListSelected(undefined);
+                setTodoListSelected !== undefined && setTodoListSelected(undefined);
             }}
             onCancel={() => {
                 !mutateData?.isLoading && setIsModalDeleteOpen(false);
