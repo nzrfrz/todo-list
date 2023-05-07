@@ -39,6 +39,7 @@ const { Text } = Typography;
 
 export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFormOpen, setTodoListSelected}) => {
     const [form] = Form.useForm();
+    const todoTitle = Form.useWatch('title', form);
 
     const mutateData = useMutateData({
         actionType: todoData !== undefined ? "patch" : "post",
@@ -100,6 +101,7 @@ export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFo
                     text="Simpan"
                     size="large"
                     shape="round"
+                    disabled={!todoTitle}
                     loading={mutateData?.status === "loading" ? true : false}
                     onClick={() => {
                         form.validateFields()
