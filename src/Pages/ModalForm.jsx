@@ -72,6 +72,12 @@ export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFo
                 priority: todoData?.priority
             });
         }
+        else {
+            form.setFieldsValue({
+                title: todoData?.title,
+                priority: "very-high"
+            });
+        }
     }, [todoData]);
 
     return (
