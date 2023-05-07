@@ -48,11 +48,10 @@ const filterType =  [
     },
 ];
 
-export const DropdownFilter = () => {
+export const DropdownFilter = ({selectedFilterType, setSelectedFilterType}) => {
     const { isDarkMode } = React.useContext(GlobalContext);
 
     const [openDD, setOpenDD] = React.useState(false);
-    const [selectedFilterType, setSelectedFilterType] = React.useState(undefined);
 
     const {
         token: { 

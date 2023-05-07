@@ -52,6 +52,7 @@ export const ActivityDetail = () => {
     const [isModalFormOpen, setIsModalFormOpen] = React.useState(false);
     const [isModalDeleteOpen, setIsModalDeleteOpen] = React.useState(false);
     const [todoListSelected, setTodoListSelected] = React.useState(undefined);
+    const [selectedFilterType, setSelectedFilterType] = React.useState(undefined);
 
     const activityCachedByID = queryClientInstance.getQueryState(["activity", state?.activityID]);
     useQueryData({
@@ -97,6 +98,39 @@ export const ActivityDetail = () => {
 
         todoListMutate.mutateAsync({ payload: finalFormData });
     };
+
+    const todoListSort = React.useMemo(() => {
+        const tempData = todoListCached?.data?.data;
+        
+        if (todoListCached?.data?.data?.length === 0) return [];
+
+        // const reverseData = tempData.reverse();
+        // const sortAZ = tempData.sort((a, b) => { return a.title - b.title });
+        // const sortZA = tempData.sort((a, b) => { return b.title - a.title });
+        // const unFinished = tempData.sort((a, b) => { return a.is_active - b.is_active });
+
+        switch (selectedFilterType) {
+            case "newest":
+            case undefined:
+                return tempData;
+            case "oldest":
+                const reverseData = tempData.reverse();
+                return reverseData;
+            case "ascending":
+                const sortAZ = tempData.sort((a, b) => { return a.title - b.title });
+                return sortAZ;  
+            case "decending":
+                const sortZA = tempData.sort((a, b) => { return b.title - a.title });
+                return sortZA;  
+            case "notFinished":
+                const unFinished = tempData.sort((a, b) => { return a.is_active - b.is_active });
+                return unFinished;  
+            default:
+                break;
+        }  
+    }, [selectedFilterType, todoListCached?.data?.data]);
+
+    console.log(`${selectedFilterType}: \n`, todoListSort);
 
     return (
         <div data-cy="dashboard" className="one-column-layout-container" >
@@ -197,7 +231,10 @@ export const ActivityDetail = () => {
                             gap: "18px",
                         }}
                     >
-                        <DropdownFilter />
+                        <DropdownFilter 
+                            selectedFilterType={selectedFilterType}
+                            setSelectedFilterType={setSelectedFilterType}
+                        />
                         <ButtonAddTODO 
                             text="Tambah"
                             size="large"
