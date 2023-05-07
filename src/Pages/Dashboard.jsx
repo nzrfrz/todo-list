@@ -133,7 +133,6 @@ export const Dashboard = () => {
                                         title={data.title}
                                         onClick={() => {
                                             navigateTo(`/activity_detail/${data?.id}`, { state: {activityID: data?.id} });
-                                            console.log("GOT TO DETAIL", data?.id);
                                         }}
                                     />
                                     <div className="card-footer">
