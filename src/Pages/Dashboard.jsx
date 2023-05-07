@@ -162,7 +162,6 @@ export const Dashboard = () => {
                 selectedData={activitySelected}
                 isModalDeleteOpen={isModalDeleteOpen}
                 setIsModalDeleteOpen={setIsModalDeleteOpen}
-                setTodoListSelected={undefined}
             />
 
         </div>

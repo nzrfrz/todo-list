@@ -40,15 +40,12 @@ export const ModalDelete = ({modalType, selectedData, isModalDeleteOpen, setIsMo
             footer={null}
             open={isModalDeleteOpen}
             afterClose={() => {
-                setTodoListSelected(undefined);
                 formProps.resetFields();
-                console.log("REMOVE TODOLIST SELECTED");
             }}
             onCancel={() => {
                 !mutateData?.isLoading && setIsModalDeleteOpen(false);
                 setTodoListSelected(undefined);
                 formProps.resetFields();
-                console.log("REMOVE TODOLIST SELECTED ON CANCEL");
             }}
             width={490}
         >
