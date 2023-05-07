@@ -26,6 +26,7 @@ export const GlobalContextProvider = ({children}) => {
 
     const [isEditTODOTitle, setIsEditTODOTitle] = React.useState(false);
     const [isInputTODOTitleFocus, setIsInputTODOTitleFocus] = React.useState(false);
+    const [selectedFilterType, setSelectedFilterType] = React.useState("newest");
 
     const contextValue = {
         isDarkMode, 
@@ -35,7 +36,9 @@ export const GlobalContextProvider = ({children}) => {
         isEditTODOTitle, 
         setIsEditTODOTitle,
         isInputTODOTitleFocus, 
-        setIsInputTODOTitleFocus
+        setIsInputTODOTitleFocus,
+        selectedFilterType, 
+        setSelectedFilterType
     };
 
     React.useEffect(() => {

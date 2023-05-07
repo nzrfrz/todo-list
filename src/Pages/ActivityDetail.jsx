@@ -45,14 +45,14 @@ export const ActivityDetail = () => {
         windowDimension, 
         isEditTODOTitle, 
         setIsEditTODOTitle, 
-        setIsInputTODOTitleFocus 
+        setIsInputTODOTitleFocus,
+        selectedFilterType, 
     } = React.useContext(GlobalContext);
 
     const [activityTitle, setActivityTitle] = React.useState("");
     const [isModalFormOpen, setIsModalFormOpen] = React.useState(false);
     const [isModalDeleteOpen, setIsModalDeleteOpen] = React.useState(false);
     const [todoListSelected, setTodoListSelected] = React.useState(undefined);
-    const [selectedFilterType, setSelectedFilterType] = React.useState(undefined);
 
     const activityCachedByID = queryClientInstance.getQueryState(["activity", state?.activityID]);
     useQueryData({
@@ -68,18 +68,18 @@ export const ActivityDetail = () => {
         refetchFN: () => activityGetOne(state?.activityID),
     });
 
-    const todoListCached = queryClientInstance.getQueryState(["todoList", state?.activityID]);
+    const todoListCached = queryClientInstance.getQueryState(["todoList", state?.activityID, selectedFilterType]);
     useQueryData({
-        queryKey: ["todoList", state?.activityID],
-        queryFn: todoListCached?.data?.data === undefined ? todoListGetAll(state?.activityID) : null,
+        queryKey: ["todoList", state?.activityID, selectedFilterType],
+        queryFn: todoListCached?.data?.data === undefined ? todoListGetAll(state?.activityID, selectedFilterType) : null,
         isEnableFetch: todoListCached?.data?.data === undefined ? true : false,
         refetchInterval: todoListCached?.data?.data === undefined ? 500 : false,
     });
     const todoListMutate = useMutateData({
         actionType: "patch",
-        queryKey: ["todoList", state?.activityID],
+        queryKey: ["todoList", state?.activityID, selectedFilterType],
         mutateFn: todoListPatch,
-        refetchFN: () => todoListGetAll(state?.activityID),
+        refetchFN: () => todoListGetAll(state?.activityID, selectedFilterType),
     });
 
     const handletodoListActive = (selectedID) => {
@@ -98,39 +98,6 @@ export const ActivityDetail = () => {
 
         todoListMutate.mutateAsync({ payload: finalFormData });
     };
-
-    const todoListSort = React.useMemo(() => {
-        const tempData = todoListCached?.data?.data;
-        
-        if (todoListCached?.data?.data?.length === 0) return [];
-
-        // const reverseData = tempData.reverse();
-        // const sortAZ = tempData.sort((a, b) => { return a.title - b.title });
-        // const sortZA = tempData.sort((a, b) => { return b.title - a.title });
-        // const unFinished = tempData.sort((a, b) => { return a.is_active - b.is_active });
-
-        switch (selectedFilterType) {
-            case "newest":
-            case undefined:
-                return tempData;
-            case "oldest":
-                const reverseData = tempData.reverse();
-                return reverseData;
-            case "ascending":
-                const sortAZ = tempData.sort((a, b) => { return a.title - b.title });
-                return sortAZ;  
-            case "decending":
-                const sortZA = tempData.sort((a, b) => { return b.title - a.title });
-                return sortZA;  
-            case "notFinished":
-                const unFinished = tempData.sort((a, b) => { return a.is_active - b.is_active });
-                return unFinished;  
-            default:
-                break;
-        }  
-    }, [selectedFilterType, todoListCached?.data?.data]);
-
-    console.log(`${selectedFilterType}: \n`, todoListSort);
 
     return (
         <div data-cy="dashboard" className="one-column-layout-container" >
@@ -231,10 +198,7 @@ export const ActivityDetail = () => {
                             gap: "18px",
                         }}
                     >
-                        <DropdownFilter 
-                            selectedFilterType={selectedFilterType}
-                            setSelectedFilterType={setSelectedFilterType}
-                        />
+                        <DropdownFilter />
                         <ButtonAddTODO 
                             text="Tambah"
                             size="large"
@@ -261,7 +225,7 @@ export const ActivityDetail = () => {
                     :
                     <>
                     {
-                        todoListCached?.data?.data.length === 0 ?
+                        todoListCached?.data?.data?.length === 0 ?
                         <div 
                             data-cy="todo-empty-state" 
                             className="empty-activity-container" 
@@ -286,7 +250,7 @@ export const ActivityDetail = () => {
                             }}
                         >
                             {
-                                todoListCached?.data?.data.map((data, index) => 
+                                todoListCached?.data?.data?.map((data, index) => 
                                 <Card
                                     key={index}
                                     hoverable

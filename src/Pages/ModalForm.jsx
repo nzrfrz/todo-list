@@ -45,7 +45,7 @@ export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFo
         queryKey: ["todoList", activityData?.id],
         mutateFn: todoData !== undefined ? todoListPatch : todoListPost,
         refetchFN: () => todoListGetAll(activityData?.id),
-        formProps: form,
+        form,
         setIsModalFormOpen
     });
 
@@ -74,7 +74,6 @@ export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFo
         }
         else {
             form.setFieldsValue({
-                title: todoData?.title,
                 priority: "very-high"
             });
         }

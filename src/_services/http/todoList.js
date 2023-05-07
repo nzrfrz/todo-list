@@ -31,9 +31,39 @@ export const activityDelete = async (args) => {
 
 
 
-export const todoListGetAll = async (activityID) => {
+export const todoListGetAll = async (activityID, filterType) => {
     const response = await requestGeneral.get(`/todo-items?activity_group_id=${activityID}`);
-    return response.data;
+
+    switch (filterType) {
+        case "newest":
+            return response.data;
+        case "oldest":
+            return {
+                ...response.data,
+                data: response.data.data.reverse()
+            };
+        case "ascending":
+            return {
+                ...response.data,
+                data: response.data.data?.sort((a, b) => 
+                    a.title.charAt(0).toLowerCase() < b.title.charAt(0).toLowerCase() ? -1 : 1
+                )
+            };
+        case "descending":
+            return {
+                ...response.data,
+                data: response.data.data?.sort((a, b) => 
+                    a.title.charAt(0).toLowerCase() < b.title.charAt(0).toLowerCase() ? 1 : -1
+                )
+            };
+        case "notFinished":
+            return {
+                ...response.data,
+                data: response.data.data?.sort((a, b) => { return a.is_active - b.is_active })
+            };
+        default:
+            break;
+    }
 }
 
 export const todoListPost = async (args) => {

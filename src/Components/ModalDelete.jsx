@@ -1,4 +1,5 @@
 import * as React from "react";
+import { GlobalContext } from "../Context/GlobalContextCreate";
 
 import { 
     Modal, 
@@ -21,12 +22,13 @@ import { toTitleCase } from "../_helpers";
 const { Text } = Typography;
 
 export const ModalDelete = ({modalType, selectedData, isModalDeleteOpen, setIsModalDeleteOpen}) => {
+    const { selectedFilterType } = React.useContext(GlobalContext);
     
     const mutateData = useMutateData({
         actionType: "delete",
-        queryKey: modalType === "activity" ? ["activityAll"] : ["todoList", selectedData?.activity_group_id],
+        queryKey: modalType === "activity" ? ["activityAll"] : ["todoList", selectedData?.activity_group_id, selectedFilterType],
         mutateFn: modalType === "activity" ? activityDelete : todoListDelete,
-        refetchFN: () => modalType === "activity" ? activityGetAll() : todoListGetAll(selectedData?.activity_group_id),
+        refetchFN: () => modalType === "activity" ? activityGetAll() : todoListGetAll(selectedData?.activity_group_id, selectedFilterType),
         setIsModalDeleteOpen
     });
 
