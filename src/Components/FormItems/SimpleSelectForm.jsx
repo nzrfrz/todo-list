@@ -4,6 +4,9 @@ import {
     Select,
     Typography
 } from 'antd';
+import {
+    DownOutlined
+} from '@ant-design/icons';
 
 import { PriorityBadge } from "../../Pages/PriorityBadge";
 
@@ -27,6 +30,8 @@ export const SimpleSelectForm = ({name, label, optionSelect, requiredMark = true
             <Select
                 size="large"
                 placeholder={`Select ${label}`}
+                data-cy="modal-add-priority-dropdown"
+                suffixIcon={<DownOutlined data-cy="modal-add-priority-dropdown" />}
                 style={{
                     width: "50%"
                 }}
