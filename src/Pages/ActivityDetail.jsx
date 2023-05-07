@@ -206,6 +206,7 @@ export const ActivityDetail = () => {
                             icon={<PlusOutlined />}
                             onClick={() => {
                                 setIsModalFormOpen(true);
+                                setTodoListSelected(undefined);
                             }}
                         />
                     </div>

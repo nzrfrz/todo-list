@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { 
     theme, 
+    Form,
     ConfigProvider,
 } from 'antd';
 import { themeToken } from "../themeToken";
@@ -16,6 +17,7 @@ const themeMode = localStorage.getItem("themeMode");
 import { GlobalContext } from "./GlobalContextCreate";
 
 export const GlobalContextProvider = ({children}) => {
+    const [formProps] = Form.useForm();
     const { defaultAlgorithm, darkAlgorithm } = theme;
 
     const [isDarkMode, setIsDarkMode] = React.useState(false);
@@ -30,6 +32,7 @@ export const GlobalContextProvider = ({children}) => {
 
     const contextValue = {
         isDarkMode, 
+        formProps,
         setIsDarkMode, 
         windowDimension, 
         setWindowDimension,

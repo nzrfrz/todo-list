@@ -22,7 +22,7 @@ import { toTitleCase } from "../_helpers";
 const { Text } = Typography;
 
 export const ModalDelete = ({modalType, selectedData, isModalDeleteOpen, setIsModalDeleteOpen, setTodoListSelected}) => {
-    const { selectedFilterType } = React.useContext(GlobalContext);
+    const { formProps, selectedFilterType } = React.useContext(GlobalContext);
     
     const mutateData = useMutateData({
         actionType: "delete",
@@ -40,10 +40,15 @@ export const ModalDelete = ({modalType, selectedData, isModalDeleteOpen, setIsMo
             footer={null}
             open={isModalDeleteOpen}
             afterClose={() => {
-                setTodoListSelected !== undefined && setTodoListSelected(undefined);
+                setTodoListSelected(undefined);
+                formProps.resetFields();
+                console.log("REMOVE TODOLIST SELECTED");
             }}
             onCancel={() => {
                 !mutateData?.isLoading && setIsModalDeleteOpen(false);
+                setTodoListSelected(undefined);
+                formProps.resetFields();
+                console.log("REMOVE TODOLIST SELECTED ON CANCEL");
             }}
             width={490}
         >
@@ -90,7 +95,7 @@ export const ModalDelete = ({modalType, selectedData, isModalDeleteOpen, setIsMo
                         shape="round"
                         loading={mutateData?.isLoading}
                         onClick={() => {
-                            mutateData.mutateAsync({param: selectedData?.id})
+                            mutateData.mutateAsync({param: selectedData?.id});
                         }}
                     />
                 </div>

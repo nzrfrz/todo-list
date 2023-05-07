@@ -39,17 +39,16 @@ const priorityData = [
 const { Text } = Typography;
 
 export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFormOpen, setTodoListSelected}) => {
-    const [form] = Form.useForm();
-    const todoTitle = Form.useWatch('title', form);
 
-    const { selectedFilterType } = React.useContext(GlobalContext);
+    const { formProps, selectedFilterType } = React.useContext(GlobalContext);
+    const todoTitle = Form.useWatch('title', formProps);
 
     const mutateData = useMutateData({
         actionType: todoData !== undefined ? "patch" : "post",
         queryKey: ["todoList", activityData?.id, selectedFilterType],
         mutateFn: todoData !== undefined ? todoListPatch : todoListPost,
         refetchFN: () => todoListGetAll(activityData?.id, selectedFilterType),
-        formProps: form,
+        formProps,
         setIsModalFormOpen
     });
 
@@ -71,18 +70,13 @@ export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFo
 
     React.useEffect(() => {
         if (todoData !== undefined) {
-            form.setFieldsValue({
+            formProps.setFieldsValue({
                 title: todoData?.title,
                 priority: todoData?.priority
             });
         }
-        else {
-            form.setFieldsValue({
-                title: undefined,
-                priority: "very-high"
-            });
-        }
     }, [todoData]);
+    // console.log(todoTitle);
 
     return (
         <Modal 
@@ -94,7 +88,7 @@ export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFo
             onCancel={() => {
                 !mutateData?.isLoading && setIsModalFormOpen(false);
                 setTodoListSelected(undefined);
-                form.resetFields();
+                formProps.resetFields();
             }}
             afterClose={() => {
                 setTodoListSelected(undefined);
@@ -108,7 +102,7 @@ export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFo
                     disabled={!todoTitle}
                     loading={mutateData?.status === "loading" ? true : false}
                     onClick={() => {
-                        form.validateFields()
+                        formProps.validateFields()
                             .then((values) => {
                                 onFinishForm(values);
                             })
@@ -121,7 +115,7 @@ export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFo
         >
             <div className="modal-form-container" style={{ paddingTop: "24px" }}>
                 <Form
-                    form={form}
+                    form={formProps}
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 24 }}
                     layout="vertical"
@@ -129,6 +123,7 @@ export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFo
                     style={{
                         width: "auto",
                     }}
+                    initialValues={{ title: undefined, priority: "very-high"}}
                     scrollToFirstError
                     disabled={mutateData?.status === "loading" ? true : false}
                     requiredMark={todoData === undefined ? true : false}
