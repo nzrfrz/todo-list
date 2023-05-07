@@ -21,7 +21,7 @@ import { toTitleCase } from "../_helpers";
 
 const { Text } = Typography;
 
-export const ModalDelete = ({modalType, selectedData, isModalDeleteOpen, setIsModalDeleteOpen}) => {
+export const ModalDelete = ({modalType, selectedData, isModalDeleteOpen, setIsModalDeleteOpen, setTodoListSelected}) => {
     const { selectedFilterType } = React.useContext(GlobalContext);
     
     const mutateData = useMutateData({
@@ -39,6 +39,9 @@ export const ModalDelete = ({modalType, selectedData, isModalDeleteOpen, setIsMo
             closable={false}
             footer={null}
             open={isModalDeleteOpen}
+            afterClose={() => {
+                setTodoListSelected(undefined);
+            }}
             onCancel={() => {
                 !mutateData?.isLoading && setIsModalDeleteOpen(false);
             }}

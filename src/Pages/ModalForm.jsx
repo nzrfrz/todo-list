@@ -1,4 +1,5 @@
 import * as React from "react";
+import { GlobalContext } from "../Context/GlobalContextCreate";
 
 import { 
     Modal, 
@@ -41,12 +42,14 @@ export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFo
     const [form] = Form.useForm();
     const todoTitle = Form.useWatch('title', form);
 
+    const { selectedFilterType } = React.useContext(GlobalContext);
+
     const mutateData = useMutateData({
         actionType: todoData !== undefined ? "patch" : "post",
-        queryKey: ["todoList", activityData?.id],
+        queryKey: ["todoList", activityData?.id, selectedFilterType],
         mutateFn: todoData !== undefined ? todoListPatch : todoListPost,
-        refetchFN: () => todoListGetAll(activityData?.id),
-        form,
+        refetchFN: () => todoListGetAll(activityData?.id, selectedFilterType),
+        formProps: form,
         setIsModalFormOpen
     });
 
@@ -75,6 +78,7 @@ export const ModalForm = ({activityData, todoData, isModalFormOpen, setIsModalFo
         }
         else {
             form.setFieldsValue({
+                title: undefined,
                 priority: "very-high"
             });
         }

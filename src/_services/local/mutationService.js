@@ -67,6 +67,7 @@ export const useMutateData = ({
                     openNotif("success", "authorization", "Success", descriptionMessage);
                     setIsModalFormOpen(false);
                     destroyNotif();
+                    if (formProps !== undefined) formProps?.resetFields();
                     break;
                 case (actionType === "post" || actionType === "put" || actionType === "patch") && routePath !== undefined:
                     await queryClientInstance.fetchQuery({
@@ -84,6 +85,7 @@ export const useMutateData = ({
                         queryFn: () => refetchFN()
                     });
                     await queryClientInstance.invalidateQueries(queryKey);
+                    if (formProps !== undefined) formProps?.resetFields();
                     openNotif("success", "authorization", "Success", descriptionMessage);
                     destroyNotif();
                     break;
@@ -96,9 +98,6 @@ export const useMutateData = ({
                     openNotif("success", "authorization", "Success", descriptionMessage);
                     setIsModalDeleteOpen(false);
                     destroyNotif();
-                    break;
-                case formProps !== undefined:
-                    formProps?.resetFields();
                     break;
                 default:
                     break;
