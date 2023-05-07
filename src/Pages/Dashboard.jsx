@@ -49,6 +49,7 @@ export const Dashboard = () => {
         queryKey: ["activityAll"],
         mutateFn: activityPost,
         refetchFN: activityGetAll,
+        formProps: undefined
     });
 
     const cardWidth = React.useMemo(() => {

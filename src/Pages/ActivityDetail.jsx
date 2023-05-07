@@ -309,7 +309,6 @@ export const ActivityDetail = () => {
                 selectedData={todoListSelected}
                 isModalDeleteOpen={isModalDeleteOpen}
                 setIsModalDeleteOpen={setIsModalDeleteOpen}
-                setTodoListSelected={setTodoListSelected}
             />
 
             <ModalForm 

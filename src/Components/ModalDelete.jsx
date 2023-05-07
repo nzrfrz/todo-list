@@ -3,6 +3,7 @@ import { GlobalContext } from "../Context/GlobalContextCreate";
 
 import { 
     Modal, 
+    Form,
     Typography,
 } from "antd";
 import { ButtonModalOK } from "./ButtonModalOK";
@@ -21,7 +22,7 @@ import { toTitleCase } from "../_helpers";
 
 const { Text } = Typography;
 
-export const ModalDelete = ({modalType, selectedData, isModalDeleteOpen, setIsModalDeleteOpen, setTodoListSelected}) => {
+export const ModalDelete = ({modalType, selectedData, isModalDeleteOpen, setIsModalDeleteOpen}) => {
     const { formProps, selectedFilterType } = React.useContext(GlobalContext);
     
     const mutateData = useMutateData({
@@ -29,6 +30,7 @@ export const ModalDelete = ({modalType, selectedData, isModalDeleteOpen, setIsMo
         queryKey: modalType === "activity" ? ["activityAll"] : ["todoList", selectedData?.activity_group_id, selectedFilterType],
         mutateFn: modalType === "activity" ? activityDelete : todoListDelete,
         refetchFN: () => modalType === "activity" ? activityGetAll() : todoListGetAll(selectedData?.activity_group_id, selectedFilterType),
+        formProps: undefined,
         setIsModalDeleteOpen
     });
 
@@ -44,11 +46,11 @@ export const ModalDelete = ({modalType, selectedData, isModalDeleteOpen, setIsMo
             }}
             onCancel={() => {
                 !mutateData?.isLoading && setIsModalDeleteOpen(false);
-                setTodoListSelected(undefined);
                 formProps.resetFields();
             }}
             width={490}
         >
+            <Form form={formProps}></Form>
             <div
                 className="modal-delete-container"
                 style={{
